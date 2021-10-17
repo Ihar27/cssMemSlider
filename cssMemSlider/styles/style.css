@@ -1,0 +1,145 @@
+body {
+  background-color: #25282a;
+}
+.all {
+  max-height: 80vh;
+}
+.slider {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.1fr;
+  gap: 5% 5%;
+  grid-template-areas:
+    'slides slides slides'
+    'slides-text slides-text active';
+  padding: 2%;
+}
+.slides {
+  grid-area: slides;
+}
+.slides-text {
+  grid-area: slides-text;
+}
+.active {
+  grid-area: active;
+}
+.image article img {
+  height: 40vmax;
+  border-radius: 1%;
+}
+p {
+  font-size: 1rem;
+  font-family: monospace;
+  display: block;
+  color: #fff;
+  margin: 0;
+}
+.slider {
+  margin: 0 auto;
+}
+
+.slides article,
+.slides-text article {
+  width: 25%;
+  float: left;
+}
+
+.slides .image,
+.slides-text .text {
+  width: 400%;
+}
+#overflow {
+  width: 100%;
+  overflow: hidden;
+}
+article img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+label {
+  position: relative;
+  display: block;
+  margin-left: 3%;
+  cursor: pointer;
+}
+.active label::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.all input {
+  display: none;
+}
+#switch1:checked ~ .slides .image,
+#switch1:checked ~ .slides-text .text {
+  margin-left: 0;
+}
+#switch2:checked ~ .slides .image,
+#switch2:checked ~ .slides-text .text {
+  margin-left: -100%;
+}
+#switch3:checked ~ .slides .image,
+#switch3:checked ~ .slides-text .text {
+  margin-left: -200%;
+}
+#switch4:checked ~ .slides .image,
+#switch4:checked ~ .slides-text .text {
+  margin-left: -300%;
+}
+.active label {
+  border-radius: 50%;
+  border: 2px solid #71abff;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #71abff;
+}
+.active {
+  text-align: right;
+}
+.active label:hover {
+  border-color: #fff;
+  background: #fff;
+}
+#switch1:checked ~ .active label:nth-child(1),
+#switch2:checked ~ .active label:nth-child(2),
+#switch3:checked ~ .active label:nth-child(3),
+#switch4:checked ~ .active label:nth-child(4) {
+  background-color: #25282a;
+  border-color: #fff;
+}
+.slides .image,
+.slides-text .text {
+  transition: all 500ms cubic-bezier(0.07, 0, 0.075, 1);
+}
+
+@media (max-width: 585px) {
+  .slider {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.7fr 0.3fr 1fr;
+    gap: 5% 0%;
+    grid-template-areas:
+      'slides'
+      'active'
+      'slides-text';
+  }
+  .slides {
+    grid-area: slides;
+  }
+  .slides-text {
+    grid-area: slides-text;
+  }
+  .active {
+    grid-area: active;
+  }
+  .active {
+    text-align: center;
+  }
+}
